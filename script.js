@@ -1,3 +1,5 @@
+
+
 const startscreen = document.getElementById('start-screen');
 const startbutton = document.getElementById('start-btn');
 const quizscreen = document.getElementById('quiz-screen');
@@ -21,8 +23,48 @@ const quizquestions = [
             {text: 'Berlin', correct: false},
             {text: 'Paris', correct: true},
             {text: 'Madrid', correct: false},
-        ]
-    }
-
-    
+        ],
+    },
+    {
+        question: 'What is the largest ocean on earth?',
+        answer: [
+            {text: 'Atlantic Ocean', correct: false},
+            {text: 'Indian Ocean', correct: false},
+            {text: 'Arctic Ocean', correct: false},
+            {text: 'Pacific Ocean', correct: true},
+        ],
+    },
+    {
+        question: 'What is the capital of france?',
+        answer: [
+            {text: 'London', correct: false},
+            {text: 'Berlin', correct: false},
+            {text: 'Paris', correct: true},
+            {text: 'Madrid', correct: false},
+        ],
+    },
+    {
+       question: 'What is the capital of france?',
+        answer: [
+            {text: 'London', correct: false},
+            {text: 'Berlin', correct: false},
+            {text: 'Paris', correct: true},
+            {text: 'Madrid', correct: false},
+        ], 
+    },
+    {
+        question: 'What is the capital of france?',
+        answer: [
+            {text: 'London', correct: false},
+            {text: 'Berlin', correct: false},
+            {text: 'Paris', correct: true},
+            {text: 'Madrid', correct: false},
+        ],
+    },
 ]
+
+let currentquestionindex = 0;
+let score =0;
+let answersDisabled = false
+
+totalquestions
