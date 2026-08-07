@@ -14,7 +14,7 @@ body{
 }
 .container{
     background-color: #f0e9e9;
-    border-radius: 5px;
+    border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     width: 100%;
     max-width: 500px;
@@ -38,6 +38,11 @@ body{
     color: orange;
     margin-bottom: 20px;
     font-size: 2.5rem;
+}
+#start-screen p{
+    color: #666;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
 }
 .quiz-header{
     margin-bottom: 2rem;
@@ -97,5 +102,62 @@ answer-btn.incorrect{
     transition: width 0.3s ease;
 }
 #result-screen{
+    color: orange;
+    margin-bottom: 30px;
+}
+#result-screen h1{
+    color: orange;
+    margin-bottom: 30px;
+}
+.result-info{
+    background-color: #f8f0e5;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+.result-info p{
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 1rem;
+}
+.result-message{
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #e86a33;
+}
+button{
+    background-color: orangered;
+    color: white;
+    border: none;
+    padding: 13px 25px;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-bottom: 10px;
+}
+button:hover{
+    color: white;
+    transition: 0.3ease;
+    background-image: linear-gradient(to right, rgb(67, 67, 155) 0%, rgb(202, 136, 14)100%);
+}
+
+@media screen and (max-width: 500px) {
+    .screen{
+        padding: 1rem;
+    }
+    #start-screen h1{
+        font-size: 2rem;
+    }
+    #question-text{
+        font-size: 1.3rem;
+    }
+    .answer-btn{
+        padding: 12px;
+    }
+    .button{
+        padding: 12px 25px;
+        font-size: 1rem;
+    }
     
 }

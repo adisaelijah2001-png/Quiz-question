@@ -1,0 +1,12 @@
+const startscreen = document.getElementById('start-screen');
+const startbutton = document.getElementById('start-btn');
+const quizscreen = document.getElementById('quiz screen');
+const questiontext = document.getElementById('question-text');
+const currentquestion = document.getElementById('current-question');
+const scorespan = document.getElementById('score');
+const answercontainer = document.getElementById('answer-container');
+const progress = document.getElementById('progress');
+const resultscreen = document.getElementById('result-screen');
+const finalscore = document.getElementById('final-score');
+const maxscore = document.getElementById('max-score');
+const restartbtn = document.getElementById('restart-btn');
