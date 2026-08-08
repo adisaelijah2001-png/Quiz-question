@@ -67,4 +67,25 @@ let currentquestionindex = 0;
 let score =0;
 let answersDisabled = false
 
-totalquestions
+totalquestions.textContent = quizquestions.length;
+maxscore.textContent = quizquestions.length;
+
+startbutton.addEventListener('click', startQuiz)
+restartbtn.addEventListener('click', restartQuiz)
+
+function startQuiz(){
+currentquestionindex = 0;
+scorespan.textContent = 0;
+
+startscreen.classList.remove('active');
+quizscreen.classList.add('active')
+
+showQuestion()
+}
+function showQuestion(){
+    answersDisabled = false;
+    const 
+}
+function restartQuiz(){
+    console.log('quiz re-started')
+}
