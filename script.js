@@ -80,11 +80,14 @@ scorespan.textContent = 0;
 startscreen.classList.remove('active');
 quizscreen.classList.add('active')
 
-showQuestion()
+showQuestions()
 }
-function showQuestion(){
+
+function showQuestions{
     answersDisabled = false;
-    const 
+    const currentquestion = quizquestions[currentquestionindex]
+
+    currentquestion.textContent = currentquestionindex + 1
 }
 function restartQuiz(){
     console.log('quiz re-started')
