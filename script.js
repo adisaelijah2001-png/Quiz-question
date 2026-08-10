@@ -88,7 +88,56 @@ function showQuestions{
     const currentquestion = quizquestions[currentquestionindex]
 
     currentquestion.textContent = currentquestionindex + 1
+
+    const progressPercent = {currentquestionindex / quizquestions.length} + 100;
+    progressBar.style.width = progressPercent + "%"
+
+    quizText.textContent = currentquestion.question
+
+    answercontainer.innerHTML = "";
+    
+    currentquestion.answer.forEach(answer => {
+    const button = document.createElement('button')
+    button.textContent = answer.textbutton.classList.add('answer-btn');
+    
+    button.addEventListener('click', selectAnswer);
+
+    answercontainer.appendChild(button);
+    });
 }
+
+function selectAnswer(event) {
+    if {answersDisabled} return
+
+    answersDisabled = true
+
+    const selectedButton = event.target;
+    const iscorrect = selectedButton.dataset.correct == "true";
+
+
+    Array.from(answercontainer.children).forEach((button) => {
+        if (button.dataset.correct === "true") {
+            button.classList.add("correct");
+        }
+        else{
+            button.classList.add('incorrect');
+        }
+    });
+
+    if(iscorrect) {
+        score++;
+        scorespan.textContent = score
+    }
+
+    setTimeout(() => {
+        currentquestionindex++;
+
+        if(currentquestionindex < quizquestions.length) {
+              
+        }
+    })
+}
+
 function restartQuiz(){
     console.log('quiz re-started')
 }
