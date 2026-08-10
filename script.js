@@ -19,125 +19,149 @@ const quizquestions = [
     {
         question: 'What is the capital of france?',
         answer: [
-            {text: 'London', correct: false},
-            {text: 'Berlin', correct: false},
-            {text: 'Paris', correct: true},
-            {text: 'Madrid', correct: false},
-        ],
+            { text: 'London', correct: false },
+            { text: 'Berlin', correct: false },
+            { text: 'Paris', correct: true },
+            { text: 'Madrid', correct: false }
+        ]
     },
     {
         question: 'What is the largest ocean on earth?',
         answer: [
-            {text: 'Atlantic Ocean', correct: false},
-            {text: 'Indian Ocean', correct: false},
-            {text: 'Arctic Ocean', correct: false},
-            {text: 'Pacific Ocean', correct: true},
-        ],
+            { text: 'Atlantic Ocean', correct: false },
+            { text: 'Indian Ocean', correct: false },
+            { text: 'Arctic Ocean', correct: false },
+            { text: 'Pacific Ocean', correct: true }
+        ]
     },
     {
         question: 'What is the capital of france?',
         answer: [
-            {text: 'London', correct: false},
-            {text: 'Berlin', correct: false},
-            {text: 'Paris', correct: true},
-            {text: 'Madrid', correct: false},
-        ],
-    },
-    {
-       question: 'What is the capital of france?',
-        answer: [
-            {text: 'London', correct: false},
-            {text: 'Berlin', correct: false},
-            {text: 'Paris', correct: true},
-            {text: 'Madrid', correct: false},
-        ], 
+            { text: 'London', correct: false },
+            { text: 'Berlin', correct: false },
+            { text: 'Paris', correct: true },
+            { text: 'Madrid', correct: false }
+        ]
     },
     {
         question: 'What is the capital of france?',
         answer: [
-            {text: 'London', correct: false},
-            {text: 'Berlin', correct: false},
-            {text: 'Paris', correct: true},
-            {text: 'Madrid', correct: false},
-        ],
+            { text: 'London', correct: false },
+            { text: 'Berlin', correct: false },
+            { text: 'Paris', correct: true },
+            { text: 'Madrid', correct: false }
+        ]
     },
-]
+    {
+        question: 'What is the capital of france?',
+        answer: [
+            { text: 'London', correct: false },
+            { text: 'Berlin', correct: false },
+            { text: 'Paris', correct: true },
+            { text: 'Madrid', correct: false }
+        ]
+    }
+];
 
 let currentquestionindex = 0;
-let score =0;
-let answersDisabled = false
+let score = 0;
+let answersDisabled = false;
 
 totalquestions.textContent = quizquestions.length;
 maxscore.textContent = quizquestions.length;
 
-startbutton.addEventListener('click', startQuiz)
-restartbtn.addEventListener('click', restartQuiz)
+startbutton.addEventListener('click', startQuiz);
+restartbtn.addEventListener('click', restartQuiz);
 
-function startQuiz(){
-currentquestionindex = 0;
-scorespan.textContent = 0;
+function startQuiz() {
+    currentquestionindex = 0;
+    score = 0;
+    answersDisabled = false;
+    scorespan.textContent = 0;
 
-startscreen.classList.remove('active');
-quizscreen.classList.add('active')
+    startscreen.classList.remove('active');
+    quizscreen.classList.add('active');
+    resultscreen.classList.remove('active');
 
-showQuestions()
+    showQuestions();
 }
 
-function showQuestions{
+function showQuestions() {
     answersDisabled = false;
-    const currentquestion = quizquestions[currentquestionindex]
+    const currentquizquestion = quizquestions[currentquestionindex];
 
-    currentquestion.textContent = currentquestionindex + 1
+    currentquestion.textContent = currentquestionindex + 1;
+    questiontext.textContent = currentquizquestion.question;
 
-    const progressPercent = {currentquestionindex / quizquestions.length} + 100;
-    progressBar.style.width = progressPercent + "%"
+    const progressPercent = ((currentquestionindex + 1) / quizquestions.length) * 100;
+    progress.style.width = `${progressPercent}%`;
 
-    quizText.textContent = currentquestion.question
+    answercontainer.innerHTML = '';
 
-    answercontainer.innerHTML = "";
-    
-    currentquestion.answer.forEach(answer => {
-    const button = document.createElement('button')
-    button.textContent = answer.textbutton.classList.add('answer-btn');
-    
-    button.addEventListener('click', selectAnswer);
-
-    answercontainer.appendChild(button);
+    currentquizquestion.answer.forEach((answer) => {
+        const button = document.createElement('button');
+        button.textContent = answer.text;
+        button.classList.add('answer-btn');
+        button.dataset.correct = answer.correct;
+        button.addEventListener('click', selectAnswer);
+        answercontainer.appendChild(button);
     });
 }
 
 function selectAnswer(event) {
-    if {answersDisabled} return
+    if (answersDisabled) return;
 
-    answersDisabled = true
+    answersDisabled = true;
 
     const selectedButton = event.target;
-    const iscorrect = selectedButton.dataset.correct == "true";
-
+    const iscorrect = selectedButton.dataset.correct === 'true';
 
     Array.from(answercontainer.children).forEach((button) => {
-        if (button.dataset.correct === "true") {
-            button.classList.add("correct");
-        }
-        else{
+        if (button.dataset.correct === 'true') {
+            button.classList.add('correct');
+        } else if (button === selectedButton) {
             button.classList.add('incorrect');
         }
     });
 
-    if(iscorrect) {
+    if (iscorrect) {
         score++;
-        scorespan.textContent = score
+        scorespan.textContent = score;
     }
 
     setTimeout(() => {
         currentquestionindex++;
 
-        if(currentquestionindex < quizquestions.length) {
-              
+        if (currentquestionindex < quizquestions.length) {
+            showQuestions();
+        } else {
+            showResults();
         }
-    })
+    }, 1000);
 }
 
-function restartQuiz(){
-    console.log('quiz re-started')
+function showResults() {
+    quizscreen.classList.remove('active');
+    resultscreen.classList.add('active');
+
+    finalscore.textContent = score;
+
+    const percentage = (score / quizquestions.length) * 100;
+
+    if (percentage === 100) {
+        resultmessage.textContent = "perfect! You're a genius!";
+    } else if (percentage >= 80) {
+        resultmessage.textContent = 'Great job! You know your stuff!';
+    } else if (percentage >= 60) {
+        resultmessage.textContent = 'Good effort! Keep learning!';
+    } else if (percentage >= 40) {
+        resultmessage.textContent = 'Not bad! Try again to improve!';
+    } else {
+        resultmessage.textContent = "Keep studying! You'll get better!";
+    }
+}
+
+function restartQuiz() {
+    resultscreen.classList.remove('active');
+    startQuiz();
 }
